@@ -1,0 +1,15 @@
+const mongoose = require('mongoose');
+
+const CommSchema = new mongoose.Schema({
+    name: {     type: String},
+    gameName: { type: String},
+    com:{       type: String},
+    date: {
+        type: Date,
+        default: Date.now
+    }
+});
+
+const Comment = mongoose.model('Comment', CommSchema);
+
+module.exports = Comment;
