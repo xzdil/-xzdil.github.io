@@ -1,0 +1,696 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>GGame</title>
+    <meta charset="utf-8">
+    <link rel="icon" href="/static/gg.png">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="Main.css">
+    <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon-16x16.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="favicon-32x32.png">
+    <link rel="manifest" href="/site.webmanifest">
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="index.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/js-cookie@3.0.1/dist/js.cookie.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <style>
+        body {
+            font-family: 'Lato', sans-serif;
+            background-color: #f2f2f2;
+            font-weight: 300;
+            font-size: 16px;
+        }
+        .jumbotron {
+            background-image: url("/static/son.jpg");
+            background-size: 100%;
+            color: #f2f2f2;
+        }
+        a.btn-primary {
+            color: white;
+            margin-top: 20px;
+        }
+
+        .row {
+            text-align: center;
+        }
+        h2 {
+            font-size: 35px;
+            margin-left: 40px;
+            font-family: 'Lato', sans-serif;
+        }
+        ul.a {
+            margin-left: 25px;
+            border-left: 5px solid orangered;
+
+
+        }
+        ul.a li {
+            font-family: Verdana, Arial, Helvetica, sans-serif;
+            font-size: 17px;
+        }
+        img {
+            margin-left: 40px;
+            height: auto;
+            /* еще больше контроля с max-width */
+            object-fit: cover;
+        }
+        table, th, td {
+            border: 1px solid black;
+            border-collapse: collapse;
+            margin-left: 40px;
+        }
+        tr {
+            background-color:ghostwhite;
+            font-size: 20px;
+            text-align: center;
+
+        }
+        th {
+            font-size: 20px;
+            background-color:cornflowerblue;
+            font-family: Calibri, serif;
+            text-align: center;
+
+        }
+        table {
+            width: 70%;
+        }
+        ul.b {
+            margin-left: 25px;
+            list-style-type: circle;
+        }
+        ul.b li {
+            font-size:17px;
+        }
+        .t {
+            font-size: 20px;
+            margin-left: 40px;
+        }
+        img {
+            border-radius: 10px;
+        }
+
+        #panel{
+            display: none;
+        }
+        #panel-1{
+            display: none;
+        }
+        #panel-2{
+            display: none;
+        }
+        #panel-3{
+            display: none;
+        }
+        #panel-4{
+            display: none;
+        }
+        #panel-5{
+            display: none;
+        }
+        #flip{  background-color: white;
+            color: black;
+            text-overflow: clip;
+            cursor: pointer;
+            border-color: orangered;
+            margin-bottom: 20px;
+            border-radius: 25px;
+        }
+        #flip-1{
+            background-color: white;
+            color: black;
+            text-overflow: clip;
+            cursor: pointer;
+            border-color: orangered;
+            margin-bottom: 20px;
+            border-radius: 25px;
+        }
+        #flip-2{
+            background-color: white;
+            color: black;
+            text-overflow: clip;
+            cursor: pointer;
+            border-color: orangered;
+            margin-bottom: 20px;
+            border-radius: 25px;
+        }
+        #flip-3{
+            background-color: white;
+            color: black;
+            text-overflow: clip;
+            cursor: pointer;
+            border-color: orangered;
+            margin-bottom: 20px;
+            border-radius: 25px;
+        }
+        #flip-4{
+            background-color: white;
+            color: black;
+            text-overflow: clip;
+            cursor: pointer;
+            border-color: orangered;
+            margin-bottom: 20px;
+            border-radius: 25px;
+        }
+        #flip-5{
+            background-color: white;
+            color: black;
+            text-overflow: clip;
+            cursor: pointer;
+            border-color: orangered;
+            margin-bottom: 20px;
+            border-radius: 25px;
+        }
+        label {
+            font-size: 20px;
+            position: relative;
+            left: 5px;
+        }
+        .m {
+            position: relative;
+            right: 50px;
+        }
+        .slideshow-container {
+            position: relative;
+            background: #f1f1f1f1;
+        }
+
+        /* Slides */
+        .mySlides {
+            display: none;
+            padding: 80px;
+            text-align: center;
+        }
+
+        /* Next & previous buttons */
+        .prev, .next {
+            cursor: pointer;
+            position: absolute;
+            top: 50%;
+            width: auto;
+            margin-top: -30px;
+            padding: 16px;
+            color: #888;
+            font-weight: bold;
+            font-size: 20px;
+            border-radius: 0 3px 3px 0;
+            user-select: none;
+        }
+
+        /* Position the "next button" to the right */
+        .next {
+            position: absolute;
+            right: 0;
+            border-radius: 3px 0 0 3px;
+        }
+
+        /* On hover, add a black background color with a little bit see-through */
+        .prev:hover, .next:hover {
+            background-color: rgba(0,0,0,0.8);
+            color: white;
+        }
+
+        /* The dot/bullet/indicator container */
+        .dot-container {
+            text-align: center;
+            padding: 20px;
+            background: #ddd;
+        }
+
+        /* The dots/bullets/indicators */
+        .dot {
+            cursor: pointer;
+            height: 15px;
+            width: 15px;
+            margin: 0 2px;
+            background-color: #bbb;
+            border-radius: 50%;
+            display: inline-block;
+            transition: background-color 0.6s ease;
+        }
+
+        /* Add a background color to the active dot/circle */
+        .active, .dot:hover {
+            background-color: #717171;
+        }
+
+        /* Add an italic font style to all quotes */
+        q {font-style: italic;}
+
+        /* Add a blue color to the author */
+        .author {color: cornflowerblue;}
+
+        p3 {
+
+        }
+        iframe {
+            width: 100%;
+        }
+        .btn{
+            color: white;
+        }
+        .btn:hover {
+            color: black;
+        }
+
+    </style>
+</head>
+<body>
+
+<div class="jumbotron">
+    <div class="container" style="color: white">
+        <h1>TOP 10:The most favourite videogames of our team</h1>
+        <p id="lol">In this article,we wanna share with you our favourable games,our team considers these games<br> as intriguing.Every player has to test them.</p>
+        <p><a id="get_work" href="#" class="btn btn-primary btn-lg">Learn more &raquo;</a> </p>
+    </div>
+</div>
+<div class="container w">
+    <div class="row">
+        <br><br>
+        <div class="col-md-4">
+            <i class="fa fa-comments" style="font-size:24px"></i>
+            <h4>Reviews</h4>
+            <p id="get_started">Our team has tried to prepare for you only fresh reviews associated with games in numerous genres such as action,open world,life simulator and even visual novel.</p>
+        </div>
+        <div class="col-md-4">
+            <i class="fa fa-graduation-cap" style="font-size:24px"></i>
+            <h4>Professionalism</h4>
+            <p id="get_start">Our team has a rich experience in game development,and we can say that we are proffesionals,and we know what to do and what to recommend for you.</p>
+        </div>
+        <div class="col-md-4">
+            <i class="fa fa-handshake-o" style="font-size:24px"></i>
+            <h4>Sincerity</h4>
+            <p id="get_star">These reviews and evaluations were made by our team,and we are absolutely honest with you and responsible for the accuracy of the information provided here.
+        </div>
+    </div>
+    <br><br>
+</div>
+<h2><strong>Minecraft</strong></h2>
+<ul class="a">
+    <li>Developer:<em>Mojang Studios</em></li>
+    <li>Publisher:<em>Xbox Game Studios</em></li>
+    <li>Release Date:<em>November 18,2011</em></li>
+    <li>Platforms:<em>PC,PS 4,Xbox Series,Nintendo Switch</em></li>
+</ul>
+<div class="t"><b>Minecraft</b> is a sandbox game with an open world and elements of survival.Its main feature is the ability<br> to create everything that is suitable.Everything is limited only by your imagination.The game features a<br> huge number of blocks with which you can bring your idea to life.</div>
+<a href="/games/show/Minecraft">efksdf</a>
+<img src="/static/tema.jpg" width="900" height="500">
+<br><br>
+<table>
+    <tr>
+        <th>Platforms</th>
+        <th>Metacritic ratings (journalists on a 100-point scale<br> / players on a 10-point scale)</th>
+    <tr>
+        <td>PlayStation 4</td>
+        <td>84/8.5</td>
+    </tr>
+    <tr>
+        <td>PC</td>
+        <td>90/9.5</td>
+    </tr>
+    <tr>
+        <td>Xbox Series</td>
+        <td>87/8.5</td>
+    </tr>
+    <tr>
+        <td>Nintendo Switch</td>
+        <td>90/8.5</td>
+    </tr>
+</table>
+<h2><strong>Terraria</strong></h2>
+<ul class="a">
+    <li>Developer:<em> Re-Logic</em></li>
+    <li>Publisher:<em> Re-Logic</em></li>
+    <li>Release Date:<em> 2011</em></li>
+    <li>Platforms:<em> PC,PS family,Xbox Series,Nintendo Switch, Android</em></li>
+</ul>
+<div class="t"><b>Terraria</b> is a open world sandbox game with a crafting and quest system.While Terraria doesn't have<br> a proper plot there is a  goal that you as a player need to achieve.There are tons of different mobs and<br> bosses (even unnecessary ones) with a unique loot so there is always something new for you.</div>
+<img src="/static/terraria.jpg" width="900" height="500">
+<br><br>
+<div class="container w">
+    <div class="row">
+        <div class="col-md-4">
+            <button class="button button1" id="flip"><b>Advantages</b></button>
+            <ul class="b" id="panel">
+                <li>Interesting crafting and looting system</li>
+                <li>Creativity friendly building system</li>
+                <li>Lots of bosses </li>
+                <li>Modding friendly</li>
+            </ul>
+        </div>
+        <div class="col-md-4">
+            <button class="q" id="flip-1"><b>Disadvantages</b></button>
+            <ul class="b" id="panel-1">
+                <li>While having tips and some in-game tools it still remains unfriendly for new player</li>
+                <li>Not exactly exciting graphic and physic </li>
+            </ul>
+        </div>
+    </div>
+</div>
+<table>
+    <tr>
+        <th>Platforms</th>
+        <th>Metacritic ratings (journalists on a 100-point scale<br> / players on a 10-point scale)</th>
+    <tr>
+        <td>PlayStation 4</td>
+        <td>78/8.0</td>
+    </tr>
+    <tr>
+        <td>PC</td>
+        <td>90/9.5</td>
+    </tr>
+    <tr>
+        <td>Xbox Series</td>
+        <td>80/7.5</td>
+    </tr>
+    <tr>
+        <td>Nintendo Switch</td>
+        <td>90/8.5</td>
+    </tr>
+    <tr>
+        <td>Android</td>
+        <td>95/9.0</td>
+    </tr>
+</table>
+<br><br>
+<h2><strong>The Elder Scrolls V: Skyrim</strong></h2>
+<ul class="a">
+    <li>Developer:<em> Iron Galaxy Studios</em></li>
+    <li>Publisher:<em> Bethesda Game Studios</em></li>
+    <li>Release Date:<em> 2011</em></li>
+    <li>Platforms:<em> PC,PS family,Xbox Series,Nintendo Switch</em></li>
+</ul>
+<div class="t"><b>Skyrim</b> is an open world game with a mix of RPG, sandbox mechanics.Its famous for it's open world<br> and countless stories filling it.It's open for you to decide your own story.Chose your side or don't, join<br> a fraction or just rom the world, it's all up to you! </div>
+<img src="/static/Skyrimpic.jpg" width="900" height="500">
+<br><br>
+<div class="container w">
+    <div class="row">
+        <div class="col-md-4">
+            <button class="q" id="flip-2"><b>Advantages</b></button>
+            <ul class="b" id="panel-2">
+                <li>Huge and interesting open world</li>
+                <li>High replayability</li>
+                <li>Can be easily modded</li>
+            </ul>
+        </div>
+        <div class="col-md-4">
+            <button class="q" id="flip-3"><b>Disadvantages</b></button>
+            <ul class="b" id="panel-3">
+                <li>Quite a few bugs</li>
+                <li>Some road being unbalanced</li>
+                <li>No multiplayer</li>
+            </ul>
+        </div>
+    </div>
+</div>
+<table>
+    <tr>
+        <th>Platforms</th>
+        <th>Metacritic ratings (journalists on a 100-point scale<br> / players on a 10-point scale)</th>
+    <tr>
+        <td>PlayStation 4</td>
+        <td>84/8.5</td>
+    </tr>
+    <tr>
+        <td>PC</td>
+        <td>90/9.5</td>
+    </tr>
+    <tr>
+        <td>Xbox Series</td>
+        <td>87/8.5</td>
+    </tr>
+    <tr>
+        <td>Nintendo Switch</td>
+        <td>80/7.5</td>
+    </tr>
+</table>
+<br><br>
+<h2><strong>Dota 2</strong></h2>
+<ul class="a">
+    <li>Developer:<em> Valve</em></li>
+    <li>Publisher:<em> Valve</em></li>
+    <li>Release Date:<em> 2013</em></li>
+    <li>Platforms:<em> PC</em></li>
+</ul>
+<div class="t"><b>Dota 2</b> is one of the first, most famous and popular MOBAs.It's well-known for wide variety of playable<br> characters, team-building and all strategies that player come up with.The game is always updating with<br> a various new mechanics and characters coming out every year and that is without mentioning the<br> yearly tournaments that are also biggest in the indastry.</div>
+<img src="/static/image8.jpg" width="900" height="500">
+<br><br>
+<div class="container w">
+    <div class="row">
+        <div class="col-md-4">
+            <button class="q" id="flip-4"><b>Advantages</b></button>
+            <ul class="b" id="panel-4">
+                <li>Almost every game is unique without many exactly same character match-ups</li>
+                <li>Playing as a same character over and over again you are still unlikely to run the exact same set often</li>
+                <li>Community workshop with lots of new mini-games that are totally different from regular gaming style</li>
+            </ul>
+        </div>
+        <div class="col-md-4">
+            <button class="q" id="flip-5"><b>Disadvantages</b></button>
+            <ul class="b" id="panel-5">
+                <li>OFFICIALLY THE MOST TOXIC COMMUNITY</li>
+                <li>Some characters being straight broken for the time between new patch</li>
+                <li>Bugs that aren't exactly rare</li>
+            </ul>
+        </div>
+    </div>
+</div>
+<table>
+    <tr>
+        <th>Platforms</th>
+        <th>Metacritic ratings (journalists on a 100-point scale<br> / players on a 10-point scale)</th>
+    <tr>
+        <td>PC</td>
+        <td>90/9.0</td>
+    </tr>
+</table>
+<br><br>
+<h2><strong>The trilogy of S.T.A.L.K.E.R</strong></h2>
+<ul class="a">
+    <li>Developer:<em>GSC GameWorld</em></li>
+    <li>Publisher:<em>GSC World Publishing</em></li>
+    <li>Release Date of the first game:<em>March 20,2007</em></li>
+    <li>Platforms:<em>PC, Xbox Seriesx X/S</em></li>
+</ul>
+<div class="t"><b>S.T.A.L.K.E.R.</b> is a series of games developed by the Ukrainian company GSC Game World.Created<br> in the genre of first-person shooter and survival horror with elements of role-playing game and<br> action-adventure.The events of the games take place in our time, in an alternative world on the<br> territory of Ukraine, in the Chernobyl exclusion zone.</div>
+<img src="/static/st.jpg" width="900" height="500">
+<br><br>
+<table>
+    <tr>
+        <th>Platforms</th>
+        <th>Metacritic ratings (journalists on a 100-point scale<br> / players on a 10-point scale)</th>
+    <tr>
+        <td>PC</td>
+        <td>86/8.5.</td>
+    </tr>
+    <tr>
+        <td>Xbox Series</td>
+        <td>83/8.0</td>
+    </tr>
+</table>
+<br><br>
+<h2><strong>Everlasting summer</strong></h2>
+<ul class="a">
+    <li>Developer:<em>Erogame Project, Soviet Games, Moonworks</em></li>
+    <li>Publishers:<em>  Soviet Games, Steam</em></li>
+    <li>Release Date:<em>December 21,2013</em></li>
+    <li>Platforms:<em>Linux, OS X, Microsoft Windows, Android, iOS</em></li>
+</ul>
+<div class="t"><b>Endless Summer</b> is a visual novel game with eroge elements in the setting of a pioneer camp,<br> developed and published by the Soviet Games team.It is noteworthy that the game was not originally<br> planned as a commercial or promotional product. All development was carried out by enthusiasts from<br>
+    the Ychan imageboard.</div>
+<img src="/static/zver.jpg" width="900" height="500">
+<br><br>
+<table>
+    <tr>
+        <th>Platforms</th>
+        <th>Metacritic ratings (journalists on a 100-point scale<br> / players on a 10-point scale)</th>
+    <tr>
+        <td>Android</td>
+        <td>84/8.5</td>
+    </tr>
+    <tr>
+        <td>PC</td>
+        <td>85/8.0</td>
+    </tr>
+</table>
+<br><br>
+<h2><strong>Grand Theft Auto V</strong></h2>
+<ul class="a">
+    <li>Developer:<em>Rockstar North</em></li>
+    <li>Publishers:<em>Take-Two Interactive, Rockstar Games</em></li>
+    <li>Release Date:<em>September 17, 2013</em></li>
+    <li>Platforms:<em>PlayStation 3,Xbox 360,PlayStation 4,Xbox One, Windows,Xbox Series X</em></li>
+</ul>
+<div class="t"><b>Grand Theft Auto V</b> (abbreviated as GTA V) is a multi-platform open-world action-adventure video<br> game developed and published by Rockstar Games.Grand Theft Auto V takes place in the fictional city<br> of Los Santos, based on Los Angeles.
+    There are also surrounding areas of countryside, mountains,<br> forests, hills, and beaches, in the game called "Blaine County".</div>
+<img src="/static/lox.jpg" width="900" height="500">
+<br><br>
+<table>
+    <tr>
+        <th>Platforms</th>
+        <th>Metacritic ratings (journalists on a 100-point scale<br> / players on a 10-point scale)</th>
+    <tr>
+        <td>Play Station 4</td>
+        <td>90/9.0</td>
+    </tr>
+    <tr>
+        <td>PC</td>
+        <td>95/9.5</td>
+    </tr>
+    <tr>
+        <td>Play Station 3</td>
+        <td>85/8.0</td>
+    </tr>
+    <tr>
+        <td>Xbox 360</td>
+        <td>82/8.0</td>
+    </tr>
+    <tr>
+        <td>Xbox One</td>
+        <td>86/8.5</td>
+    </tr>
+</table>
+<h2><strong>Read Dead Redemption 2</strong></h2>
+<ul class="a">
+    <li>Developer:<em>Rockstar North</em></li>
+    <li>Publishers:<em>Take-Two Interactive, Rockstar Games</em></li>
+    <li>Release Date:<em>October 26, 2018</em></li>
+    <li>Platforms:<em>PlayStation 4,Xbox One,Windows</em></li>
+</ul>
+<div class="t">A computer game in the genres of action-adventure and third-person shooter with an open world,<br> developed by Rockstar Studios.In the center of the story is Arthur Morgan.He is one of the best<br> shooters of the famous Dutch gang, which is going through hard times after an unsuccessful robbery:<br> bandits are on the run, Pinkertons and competitors are coming on their heels.</div>
+<img src="/static/red.jpg" width="900" height="500">
+<br><br>
+<table>
+    <tr>
+        <th>Platforms</th>
+        <th>Metacritic ratings (journalists on a 100-point scale<br> / players on a 10-point scale)</th>
+    <tr>
+        <td>Play Station 4</td>
+        <td>90/9.0</td>
+    </tr>
+    <tr>
+        <td>PC</td>
+        <td>85/8.5</td>
+    </tr>
+    <tr>
+        <td>Xbox One</td>
+        <td>88/8.5</td>
+    </tr>
+</table>
+<br><br>
+<h2><strong>The Sims 4</strong></h2>
+<ul class="a">
+    <li>Developer:<em>The Sims Studio</em></li>
+    <li>Publishers:<em>Electronic Arts</em></li>
+    <li>Release Date:<em>May 3,2013</em></li>
+    <li>Platforms:<em>PlayStation 4,Xbox One,PC</em></li>
+</ul>
+<div class="t"><b>The Sims 4</b> is a single-player computer game in the genre of life simulator, the fourth in a row from<br> The Sims series of games.In The Sims 4, there is no clearly defined plot, and the gameplay is not linear<br> and does not have a set end goal. The player controls up to eight personally created or selected<br> characters, directing them to perform various activities, such as satisfying their own needs, earning<br> money and creating relationships with other characters.</div>
+<img src="/static/sims4.jpg" onclick="playSound()" width="900" height="500">
+<br><br>
+<table>
+    <tr>
+        <th>Platforms</th>
+        <th>Metacritic ratings (journalists on a 100-point scale<br> / players on a 10-point scale)</th>
+    <tr>
+        <td>Play Station 4</td>
+        <td>75/7.5</td>
+    </tr>
+    <tr>
+        <td>PC</td>
+        <td>80/8.0</td>
+    </tr>
+    <tr>
+        <td>Xbox One</td>
+        <td>74/7.5</td>
+    </tr>
+</table>
+<br><br>
+<h2><strong>Mafia 2</strong></h2>
+<ul class="a">
+    <li>Developer:<em>2K Czech</em></li>
+    <li>Publishers:<em>2K</em></li>
+    <li>Release Date:<em>August 24,2010</em></li>
+    <li>Platforms:<em>PlayStation 4,Xbox One,PC,Play Station 3,Xbox 360</em></li>
+</ul>
+<div class="t"><b>Mafia II</b> is a computer game in the genre of an open-world action adventure that combines a car<br> simulator and a third-person shooter.The player in the role of Vito Scaletta needs to travel around the<br> city of Empire Bay,communicate with various characters, perform tasks that consist of shootouts,<br> the need to drive a car.</div>
+<img src="/static/maf2.jpg" width="900" height="500">
+<br><br>
+<table>
+    <tr>
+        <th>Platforms</th>
+        <th>Metacritic ratings (journalists on a 100-point scale<br> / players on a 10-point scale)</th>
+    <tr>
+        <td>Play Station 4</td>
+        <td>84/8.0</td>
+    </tr>
+    <tr>
+        <td>PC</td>
+        <td>87/8.5</td>
+    </tr>
+    <tr>
+        <td>Play Station 3</td>
+        <td>80/8.0</td>
+    </tr>
+    <tr>
+        <td>Xbox 360</td>
+        <td>82/8.0</td>
+    </tr>
+    <tr>
+        <td>Xbox One</td>
+        <td>83/8.5</td>
+    </tr>
+</table>
+<br><br>
+<div class="container">
+    <form class="m">
+        <div class="form-group">
+            <label for="comment">Your suggestions:</label>
+            <textarea class="form-control" autocomplete="off" maxlength="300" rows="5" id="comment" placeholder="Please write 300 words description" onkeyup="charCount(this)"></textarea>
+            <span id="textcount">0</span> of 300 characters
+        </div>
+
+        <button type="button" onclick="play()" id="myBtn" class="btn btn-primary">Submit</button>
+    </form>
+</div>
+<br><br>
+
+<p3>
+    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d10024.826033239511!2d71.41467068979496!3d51.08619628657943!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x424585a605525605%3A0x4dff4a1973f7567e!2sAstana%20IT%20University!5e0!3m2!1sru!2skz!4v1650269297827!5m2!1sru!2skz" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+</p3>
+<!-- Slideshow container -->
+<div class="slideshow-container">
+
+    <!-- Full-width slides/quotes -->
+    <div class="mySlides">
+        <q>Games have so much freedom-You can go anywhere you want.</q>
+        <p class="author">- Jenova Chen</p>
+    </div>
+
+    <div class="mySlides">
+        <q>My work is a game,a very serious game.</q>
+        <p class="author">- M C Escher</p>
+    </div>
+
+    <div class="mySlides">
+        <q>Life is more fun if you play games.</q>
+        <p class="author">- Roald Dahl</p>
+    </div>
+
+    <!-- Next/prev buttons -->
+    <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+    <a class="next" onclick="plusSlides(1)">&#10095;</a>
+</div>
+
+<!-- Dots/bullets/indicators -->
+<div class="dot-container">
+    <span class="dot" onclick="currentSlide(1)"></span>
+    <span class="dot" onclick="currentSlide(2)"></span>
+    <span class="dot" onclick="currentSlide(3)"></span>
+</div>
+
+</body>
+
+</html>
