@@ -1,0 +1,36 @@
+const express = require('express');
+const router  = express.Router();
+const User1 = require("../Models/User");
+const Messages = require("../Models/Message");
+const {ensureAuthenticated, admin} = require("../config/auth");
+
+router.get('/send/:name', ensureAuthenticated,async (req, res) => {
+    let toName = req.params.name
+    let toUser = await User1.findOne({name: toName})
+    let totoname = toUser.name
+    let messages = await Messages.find({name:totoname, toName:req.user.name})
+    let mymessages = await Messages.find({name:req.user.name, toName:totoname})
+    console.log(messages + "suka")
+    res.render('message', {
+        toUser: toUser,
+        user: req.user,
+        messages:messages,
+        mymes:mymessages
+    })
+})
+router.post('/send/:name', async (req, res) => {
+    let toName = req.params.name
+    let {text} = req.body
+    let toUser = await User1.findOne({name: toName})
+    let newMessage = new Messages({
+        name:req.user.name,
+        toName:toUser.name,
+        text
+    })
+    newMessage.save().then(mes=>{{
+        res.redirect('/message/send/'+toName)
+    }})
+})
+
+
+module.exports = router;
