@@ -1,0 +1,127 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Users</title>
+    <link rel="icon" href="/static/gg.png">
+    <style>
+        table {width: 100%; border-collapse: collapse;}
+        table td {padding: 12px 16px;}
+        table thead tr {font-weight: bold; border-top: 1px solid #e8e9eb;}
+        table tr {border-bottom: 1px solid #e8e9eb;}
+        table tbody tr:hover {background: #e8f6ff;}
+
+         .btn {
+             display: inline-block; /* Строчно-блочный элемент */
+             background: #8C959D; /* Серый цвет фона */
+             color: #fff; /* Белый цвет текста */
+             padding: 0.5rem 1rem; /* Поля вокруг текста */
+             text-decoration: none; /* Убираем подчёркивание */
+             border-radius: 3px; /* Скругляем уголки */
+         }
+        .sign-up-form
+        {
+            width: 800px;
+            box-shadow: 0 0 3px 0 rgba(0,0, 0, 0.3);
+            background: #fff;
+            padding: 10px;
+            margin: 8% auto 0;
+            text-align: center;
+            border-radius: 15px;
+            margin-top: 75px;
+            margin-bottom: 50px;
+        }
+        .sign-up-form h1{
+            color: #1c8adb;
+            margin-bottom: 30px;
+        }
+    </style>
+
+</head>
+<body style="background-image: url('/static/son.jpg');">
+<%-include('navbar')%>
+<div class="sign-up-form">
+<table>
+
+    <td><a class="btn" href="/users/nameSort">Sort by name</a></td>
+    <td><a class="btn" href="/users/citySort">Sort by city</a></td>
+    <td><a class="btn" href="/users/">Sort by register date</a></td>
+    <%for(let i = 0;i < users.length; i++){%>
+        <tr>
+            <%if(users[i].avatar){%>
+            <td><img style="border-radius: 100px" width="60px" src="/static/<%=users[i].avatar%>"></td>
+            <%} else {%>
+            <td><img style="border-radius: 100px" width="60px" src="https://identix.state.gov/qotw/images/no-photo.gif"></td>
+            <%}%>
+            <td> <%=users[i].name%> </td>
+            <td><a href="/profile/<%=users[i].name%>" class="btn">Show</a> </td>
+        </tr>
+    <%}%>
+</table>
+    <br>
+</div>
+
+<script>
+
+
+//    fetch('/static/users.json')
+//        .then((response) => {
+//            return response.json()
+//        })
+//        .then((data) => {
+//            console.log(data)
+//            datauser = data;
+//            localStorage.setItem('data', JSON.stringify(data));
+//        })
+//
+//    let database = JSON.parse(localStorage.getItem('data'));
+//
+//    let usersCont = document.querySelector('.usersDIV');
+//    let start;
+//    let end;
+//    let pageNum=0;
+//    let btn = document.querySelector('.btn__inc');
+//    let prevArr=[]
+//    btn.addEventListener("click",()=>{
+//        pageNum = pageNum + 1;
+//        start = (parseInt(pageNum) - 1) * 5;
+//        end = parseInt(start) +5;
+//        console.log(pageNum)
+//        console.log(start)
+//        console.log(end)
+//        prevArr.forEach(item=>{
+//            item.style.display="none";
+//        })
+//        appendCards()
+//    })
+//
+//    document.querySelector('.btn__dcr').addEventListener("click",()=>{
+//        pageNum = pageNum -1;
+//        start = (parseInt(pageNum) - 1) * 5;
+//        end = parseInt(start) +5;
+//        console.log(pageNum)
+//        console.log(start)
+//        console.log(end)
+//        prevArr.forEach(item=>{
+//            item.style.display="none";
+//        })
+//
+//        appendCards()
+//    })
+//
+//    function appendCards() {
+//        for (let i = start; i < end; i++) {
+//            console.log(database[i].name)
+//            let name = document.createElement('td');
+//            name.innerHTML = database[i].name;
+//            usersCont.appendChild(name)
+//            prevArr.push(name);
+//        }
+//    }
+
+</script>
+</body>
+</html>

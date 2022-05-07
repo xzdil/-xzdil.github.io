@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Add a user</title>
+    <style>
+        table {width: 100%; border-collapse: collapse;}
+        table td {padding: 12px 16px;}
+        table thead tr {font-weight: bold; border-top: 1px solid #e8e9eb;}
+        table tr {border-bottom: 1px solid #e8e9eb;}
+        table tbody tr:hover {background: #e8f6ff;}
+        .btn {
+            display: inline-block; /* Строчно-блочный элемент */
+            background: #8C959D; /* Серый цвет фона */
+            color: #fff; /* Белый цвет текста */
+            padding: 0.5rem 1rem; /* Поля вокруг текста */
+            text-decoration: none; /* Убираем подчёркивание */
+            border-radius: 3px; /* Скругляем уголки */
+        }
+         body{
+             margin:  0;
+             padding: 0;
+             font-family:     sans-serif;
+             background-size:      cover;
+             background-position: center;
+         }
+        .sign-up-form
+        {
+            width: 300px;
+            box-shadow: 0 0 3px 0 rgba(0,0, 0, 0.3);
+            background: #fff;
+            padding: 10px;
+            margin: 8% auto 0;
+            text-align: center;
+            border-radius: 15px;
+            margin-top: 75px;
+        }
+        .sign-up-form h1{
+            color: #1c8adb;
+            margin-bottom: 30px;
+        }
+        button{
+            color: #fff;
+            width: 50%;
+            padding: 10px;
+            border-radius: 20px;
+            font-size: 15px;
+            margin: 10px 0;
+            border: none;
+            outline: none;
+            cursor: pointer;
+        }
+        hr{
+            margin-top: 20px;
+            width: 80%;
+        }
+    </style>
+</head>
+<body>
+<div class="sign-up-form">
+<table>
+<form action='' method="post">
+        <tr>
+            <td>
+                <input name="name" id="name" placeholder="Enter name">
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <input name="salary" id="salary" placeholder="Enter salary">
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <input name="age" id="age" placeholder="Enter age">
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <input type="submit" value="Add a user" class="btn" style="background: #1c8adb">
+            </td>
+        </tr>
+
+    </tbody>
+</form>
+</table>
+    <a href="/users" class="btn">Get back</a>
+</div>
+
+</body>
+</html>
+

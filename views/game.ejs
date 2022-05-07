@@ -1,0 +1,74 @@
+<style>
+    footer{
+
+    }
+    .img-cont{
+        width: 700px;
+        ;
+    }
+    .main_container{
+        margin: 4%;
+        margin-top: 5%;
+
+    }
+    .game{
+        display: flex;
+    }
+    table {width: 100%; border-collapse: collapse;}
+    table td {padding: 12px 16px;}
+    table thead tr {font-weight: bold; border-top: 1px solid #e8e9eb;}
+    table tr {border-bottom: 1px solid #e8e9eb;}
+    table tbody tr:hover {background: #e8f6ff;}
+    .btn {
+        display: inline-block; /* Строчно-блочный элемент */
+        background: #8C959D; /* Серый цвет фона */
+        color: #fff; /* Белый цвет текста */
+        padding: 0.3rem 0.1rem; /* Поля вокруг текста */
+        text-decoration: none; /* Убираем подчёркивание */
+        border-radius: 3px; /* Скругляем уголки */
+    }
+    .desc{
+        margin-top: 75px;
+        margin-left: 40px;
+        font-size: 20px;
+    }
+    .game{
+        margin-bottom: 30px;
+    }
+</style>
+<%-include('navbar')%>
+
+<div class="main_container">
+    <div class="game">
+    <div class="game_cont">
+        <h2><%=game.name%></h2>
+        <img class="img-cont" src="/static/<%=game.avatar%>">
+    </div>
+    <div class="desc">
+        <p><%=game.description%></p>
+        <ul class="a">
+            <li>Developer:<em><%=game.developer%></em></li>
+            <li>Publisher:<em><%=game.publisher%></em></li>
+            <li>Release Date:<em><%=game.release%></em></li>
+            <li>Platforms:<em><%=game.platforms%></em></li>
+        </ul>
+    </div>
+    </div>
+<form action="" method="post">
+    <input type="text" id="com" name="com" placeholder="Enter your comment">
+    <button type="submit">Submit</button>
+    <a href="/games/edit/<%=game.name%>" class="btn">Edit</a>
+</form>
+<table>
+<%for(let i = 0; i < coms.length; i++){%>
+    <tr>
+        <td><a href="/profile/<%=coms[i].name%>"><%=coms[i].name%>:</a></td>
+        <td style="height: 100px"> <p> <%=coms[i].com%></p></td>
+        <td><p style="opacity: 0.4"><%=coms[i].date%></p></td>
+        <td><%if(coms[i].name === user.name || user.role === 1){%></td>
+        <td><a href="/games/delete/<%=coms[i].com%>"> Delete</a> <%}%> </td>
+    </tr>
+<%}%>
+</table>
+</div>
+<%-include('footer')%>
